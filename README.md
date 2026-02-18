@@ -1,75 +1,63 @@
-# Stress Transformation Explorer
+# Stress Lab: Transformation & Mohr’s Circle
 
-An interactive web application for visualizing stress transformation in materials mechanics. Built with Streamlit and Plotly.
+An interactive Streamlit web app for visualizing **stress transformation** and **Mohr’s circle** using Plotly + NumPy.
 Fully working link :- https://normalstressvsangletransformation-3qpwylp4vgknz7ma8t2zxj.streamlit.app/
 
-## Features
+## What you get
 
-- **Interactive Controls**: Adjust stress components (σx, σy, τxy) and rotation angle in real-time
-- **Live Visualization**: See how normal stress σx' varies with rotation angle θ
-- **Mathematical Formula**: Displays the exact stress transformation equation
-- **Current Value Indicator**: Shows the stress value at your selected angle
-- **Responsive Design**: Clean, modern interface that works on different screen sizes
+- **Stress transformation curve**
+  - Plots normal stress **σx′ vs rotation angle θ**
+  - Marks the current slider angle and current stress state
+- **Mohr’s circle diagram**
+  - Draws the full Mohr’s circle (center + radius)
+  - Shows the original stress point, rotated stress point, and principal stresses
+- **Formula display**
+  - Shows both the normal and shear transformation equations in LaTeX
 
-## The Math
-
-The app uses the standard plane stress transformation equation:
+## Equations used
 
 $$\sigma_{x'} = \frac{\sigma_x + \sigma_y}{2} + \frac{\sigma_x - \sigma_y}{2} \cos(2\theta) + \tau_{xy} \sin(2\theta)$$
 
+$$\tau_{x'y'} = -\frac{\sigma_x - \sigma_y}{2} \sin(2\theta) + \tau_{xy} \cos(2\theta)$$
+
 Where:
-- σx, σy = Normal stresses in x and y directions
-- τxy = Shear stress
-- θ = Rotation angle
-- σx' = Transformed normal stress
 
-## Installation
+- σx, σy = normal stresses
+- τxy = shear stress
+- θ = rotation angle
 
-1. Clone or download this repository
-2. Install required packages:
+## Setup
+
+Install dependencies using `requirements.txt`:
 
 ```bash
-pip install streamlit plotly numpy
+pip install -r requirements.txt
 ```
 
-## Usage
-
-Run the application:
+## Run
 
 ```bash
 streamlit run main.py
 ```
 
-The app will open in your browser at `http://localhost:8501`
+Then open the URL Streamlit prints (typically):
 
-### How to Use
+- `http://localhost:8501`
 
-1. **Set Stress State**: Use the sidebar to input:
-   - σx (Normal stress in X direction)
-   - σy (Normal stress in Y direction) 
-   - τxy (Shear stress)
+## How to use
 
-2. **Select Angle**: Use the angle slider to choose the rotation angle θ
+1. In the sidebar, set:
+   - `σx`, `σy`, `τxy`
+2. Choose rotation angle `θ` (degrees)
+3. Read the results:
+   - Left plot: **σx′ vs θ** with a marker at your selected angle
+   - Right plot: **Mohr’s circle** with the corresponding rotated point
+   - Info panels summarize the current stresses and principal values
 
-3. **View Results**: 
-   - The main plot shows σx' vs θ from 0° to 180°
-   - A red indicator shows your current angle selection
-   - The metric displays the exact σx' value at your selected angle
+## Notes
 
-## Technical Details
-
-- **Frontend**: Streamlit web framework
-- **Visualization**: Plotly for interactive charts
-- **Computation**: NumPy for numerical calculations
-- **Resolution**: 500 points for smooth curve rendering
-
-## Applications
-
-This tool is useful for:
-- Engineering education and learning
-- Stress analysis in mechanical design
-- Understanding material behavior under load
-- Visualizing Mohr's circle concepts
+- The UI uses a dark Plotly template (`plotly_dark`) for contrast.
+- If you run multiple times, Streamlit may choose a different port; always use the URL shown in the terminal.
 
 ## License
 
